@@ -13,7 +13,7 @@
         }
 
         /* ======================
-           BANNIÈRE GLOBALE
+           BANNIÈRE
         ====================== */
         .banniere {
             width: 100%;
@@ -27,22 +27,18 @@
             padding: 15px 0;
         }
 
-        /* ZONE DESIGN / LOGO */
+        /* IMAGE BANNIÈRE */
         .banniere-design {
-            height: 100px;
-            border: 2px dashed black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            letter-spacing: 3px;
-            color: #555;
-            background-color: #ffffff;
+            height: 120px;
+            border: 2px solid black;
             margin-bottom: 15px;
+            background-image: url("images/banniere.jpg");
+            background-size: cover;
+            background-position: center;
         }
 
         /* ======================
-           MENU INTÉGRÉ
+           MENU
         ====================== */
         .menu {
             display: grid;
@@ -55,22 +51,50 @@
         }
 
         .menu-item {
+            height: 65px;
+            border: 2px solid black;
             background-color: #cccccc;
-            height: 55px;
+            transition: all 0.25s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.08);
+            filter: brightness(0.85);
+        }
+
+        /* ======================
+           BOUTONS AVEC IMAGES
+        ====================== */
+        .btn-bio {
+            background-image: url("images/bio.jpg");
+        }
+
+        .btn-inventaire {
+            background-image: url("images/inventaire.jpg");
+        }
+
+        .btn-actu {
+            background-image: url("images/banniere.jpg");
+        }
+
+        /* ======================
+           BOUTONS TEXTE RESTANTS
+        ====================== */
+        .btn-texte {
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            color: black;
-            border: 2px solid black;
             letter-spacing: 1px;
-            transition: all 0.25s ease;
+            color: black;
+            background-color: #cccccc;
         }
 
-        .menu-item:hover {
+        .btn-texte:hover {
             background-color: black;
             color: #ffe600;
-            transform: scale(1.08);
         }
 
         /* ======================
@@ -86,35 +110,34 @@
 
 <body>
 
-<!-- BANNIÈRE + MENU -->
 <header class="banniere">
     <div class="banniere-inner">
 
-        <!-- EMPLACEMENT DESIGN -->
-        <div class="banniere-design">
-            ESPACE DESIGN / LOGO À VENIR
-        </div>
+        <!-- IMAGE BANNIÈRE -->
+        <div class="banniere-design"></div>
 
         <!-- MENU -->
         <nav class="menu">
-            <a href="Bio.html"><div class="menu-item">BIO</div></a>
-            <a href="Inventaire.html"><div class="menu-item">INVENTAIRE</div></a>
-            <a href="planning.html"><div class="menu-item">PLANNING</div></a>
-            <a href="Qix-Studio.html"><div class="menu-item">STUDIO</div></a>
-            <a href="Qix-Events.html"><div class="menu-item">EVENTS</div></a>
-            <a href="Qix-Photos.html"><div class="menu-item">PHOTOS</div></a>
-            <a href="Qix-Contact.html"><div class="menu-item">CONTACT</div></a>
-            <a href="Archives.html"><div class="menu-item">ARCHIVES</div></a>
+            <a href="Bio.html"><div class="menu-item btn-bio"></div></a>
+            <a href="Inventaire.html"><div class="menu-item btn-inventaire"></div></a>
+            <a href="actu.html"><div class="menu-item btn-actu"></div></a>
+
+            <a href="planning.html"><div class="menu-item btn-texte">PLANNING</div></a>
+            <a href="Qix-Studio.html"><div class="menu-item btn-texte">STUDIO</div></a>
+            <a href="Qix-Events.html"><div class="menu-item btn-texte">EVENTS</div></a>
+            <a href="Qix-Photos.html"><div class="menu-item btn-texte">PHOTOS</div></a>
+            <a href="Archives.html"><div class="menu-item btn-texte">ARCHIVES</div></a>
         </nav>
 
     </div>
 </header>
 
-<!-- CONTENU PAGE -->
 <h1>ACTU</h1>
 
 </body>
 </html>
+
+
 
 
 
