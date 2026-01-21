@@ -6,7 +6,7 @@
 
     <style>
         body {
-            background-color: #ffe600;
+            background-color: gray;
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
@@ -29,12 +29,13 @@
 
         /* IMAGE BANNIÈRE */
         .banniere-design {
-            height: 120px;
-            border: 2px solid black;
+            height: 140px;
             margin-bottom: 15px;
-            background-image: url("images/banniere.jpg");
-            background-size: cover;
+
+            background-image: url("banniere.jpg");
+            background-size: contain;
             background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* ======================
@@ -51,10 +52,10 @@
         }
 
         .menu-item {
-            height: 65px;
+            height: 55px;
             border: 2px solid black;
-            background-color: #cccccc;
             transition: all 0.25s ease;
+
             background-size: cover;
             background-position: center;
         }
@@ -68,28 +69,24 @@
            BOUTONS AVEC IMAGES
         ====================== */
         .btn-bio {
-            background-image: url("images/bio.jpg");
+            background-image: url("bio.jpg");
         }
 
         .btn-inventaire {
-            background-image: url("images/inventaire.jpg");
-        }
-
-        .btn-actu {
-            background-image: url("images/banniere.jpg");
+            background-image: url("inventaire.jpg");
         }
 
         /* ======================
-           BOUTONS TEXTE RESTANTS
+           BOUTONS TEXTE
         ====================== */
         .btn-texte {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: black;
             background-color: #cccccc;
+            font-weight: bold;
+            color: black;
+            letter-spacing: 1px;
         }
 
         .btn-texte:hover {
@@ -97,9 +94,6 @@
             color: #ffe600;
         }
 
-        /* ======================
-           CONTENU
-        ====================== */
         h1 {
             text-align: center;
             margin-top: 40px;
@@ -113,19 +107,19 @@
 <header class="banniere">
     <div class="banniere-inner">
 
-        <!-- IMAGE BANNIÈRE -->
+        <!-- BANNIÈRE IMAGE -->
         <div class="banniere-design"></div>
 
         <!-- MENU -->
         <nav class="menu">
             <a href="Bio.html"><div class="menu-item btn-bio"></div></a>
             <a href="Inventaire.html"><div class="menu-item btn-inventaire"></div></a>
-            <a href="actu.html"><div class="menu-item btn-actu"></div></a>
 
             <a href="planning.html"><div class="menu-item btn-texte">PLANNING</div></a>
             <a href="Qix-Studio.html"><div class="menu-item btn-texte">STUDIO</div></a>
             <a href="Qix-Events.html"><div class="menu-item btn-texte">EVENTS</div></a>
             <a href="Qix-Photos.html"><div class="menu-item btn-texte">PHOTOS</div></a>
+            <a href="Qix-Contact.html"><div class="menu-item btn-texte">CONTACT</div></a>
             <a href="Archives.html"><div class="menu-item btn-texte">ARCHIVES</div></a>
         </nav>
 
@@ -136,6 +130,7 @@
 
 </body>
 </html>
+
 
 
 
