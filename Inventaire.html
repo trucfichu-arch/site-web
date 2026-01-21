@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Inventaire</title>
+
+<style>
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f7e77c;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    letter-spacing: 2px;
+    color: #2c2c2c;
+}
+
+/* Bouton retour */
+.retour-menu {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background: #2c2c2c;
+    color: #f7e77c;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* TABLEAU */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    background: #fff8c6;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+th, td {
+    border: 1px solid #bfae3a;
+    padding: 8px;
+    font-size: 13px;
+    text-align: left;
+}
+
+th {
+    background: #f1d84b;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.ligne-filtres th {
+    background: #f6e27a;
+    padding: 6px;
+}
+
+.ligne-filtres select {
+    width: 100%;
+    padding: 6px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: 1px solid #bfae3a;
+    background: #fffef2;
+}
+
+tbody tr:nth-child(even) {
+    background: #fffde0;
+}
+
+tbody tr:hover {
+    background: #f3e58f;
+}
+</style>
+</head>
+
+<body>
+
+<button class="retour-menu" onclick="retourMenu()">← Menu</button>
+
+<h1>INVENTAIRE</h1>
+
+<table id="inventaire">
+
+<thead>
+<tr>
+    <th>Propriétaire</th>
+    <th>Catégorie</th>
+    <th>Objet</th>
+    <th>Description</th>
+    <th>Lieux</th>
+    <th>Qté</th>
+</tr>
+
+<tr class="ligne-filtres">
+    <th><select id="filtreProprietaire" onchange="filtrer()">
+        <option value="">Tous</option>
+        <option>Eliott</option><option>Raphaël</option><option>Yumé</option>
+        <option>Toni</option><option>Nina</option><option>Lilas</option>
+    </select></th>
+
+    <th><select id="filtreCategorie" onchange="filtrer()">
+        <option value="">Toutes</option>
+        <option>Vidéo</option><option>Son</option><option>Photo</option>
+        <option>PC</option><option>Peinture</option>
+    </select></th>
+
+    <th></th>
+
+    <th><select id="filtreCaracteristique" onchange="filtrer()">
+        <option value="">Toutes</option>
+        <option>GH5</option><option>70mm macro</option><option>50mm</option>
+        <option>25mm</option><option>210mm</option><option>Zoom HKT</option>
+        <option>Fender</option><option>Peavey</option><option>Ibiza</option>
+        <option>Marshall</option><option>Vox</option><option>Minilogue xd</option>
+        <option>Yamaha</option><option>Basse Allstar</option><option>TR-08</option>
+        <option>Impact</option><option>LR-amon</option><option>T-400</option>
+        <option>31band</option><option>XLR-XLR</option><option>6.8-6.8</option>
+        <option>3.5-3.5 MONO</option><option>HDMI</option>
+        <option>Samsung 5.1</option><option>LR noir</option>
+        <option>Projecteur HD</option><option>2m projection</option>
+        <option>Pc 60hz Blue g</option><option>mono yamaha</option>
+        <option>Lumikey</option><option>Scarlett</option>
+        <option>Tour de montage</option><option>Mural</option>
+        <option>Tendre toiles</option><option>Argentique</option>
+        <option>1.40m</option><option>Canon AE-1</option>
+        <option>Ilford</option><option>Lumix</option><option>Fujifilm</option>
+    </select></th>
+
+    <th><select id="filtreLieux" onchange="filtrer()">
+        <option value="">Tous</option>
+        <option>Marseille</option><option>Montpellier</option>
+    </select></th>
+
+    <th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr><td>Eliott</td><td>Vidéo</td><td>Caméra</td><td>GH5</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Vidéo</td><td>Objectif</td><td>70mm macro</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Vidéo</td><td>Objectif</td><td>50mm</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Vidéo</td><td>Objectif</td><td>25mm</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Vidéo</td><td>Objectif</td><td>210mm</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Vidéo</td><td>Enregistreur</td><td>Zoom HKT</td><td>Marseille</td><td>1</td></tr>
+
+<tr><td>Eliott</td><td>Son</td><td>Ampli</td><td>Fender</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Ampli</td><td>Peavey</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Ampli</td><td>Ibiza</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Ampli</td><td>Marshall</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Ampli</td><td>Vox</td><td>Marseille</td><td>1</td></tr>
+
+<tr><td>Eliott</td><td>Son</td><td>Guitare</td><td>Fender Squier</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Synthé</td><td>Minilogue xd</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Synthé</td><td>Yamaha</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Basse</td><td>Basse Allstar</td><td>Marseille</td><td>1</td></tr>
+
+<tr><td>Eliott</td><td>Son</td><td>Drum Machine</td><td>TR-08</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Raphaël</td><td>Son</td><td>Drum Machine</td><td>Impact</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Raphaël</td><td>Son</td><td>Système son</td><td>LR-amon</td><td>Marseille</td><td>1</td></tr>
+
+<tr><td>Eliott</td><td>Son</td><td>Ampli</td><td>T-400</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Raphaël</td><td>Son</td><td>Equaliseur</td><td>31band</td><td>Marseille</td><td>1</td></tr>
+
+<tr><td>Eliott</td><td>Son</td><td>Câbles</td><td>XLR-XLR</td><td>Marseille</td><td>2</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Câbles</td><td>6.8-6.8</td><td>Marseille</td><td>4</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Câbles</td><td>3.5-3.5 MONO</td><td>Marseille</td><td>10</td></tr>
+<tr><td>Eliott</td><td>Vidéo</td><td>Câbles</td><td>HDMI</td><td>Marseille</td><td>2</td></tr>
+
+<tr><td>Eliott</td><td>Son</td><td>Système son</td><td>Samsung 5.1</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Système son</td><td>LR noir</td><td>Montpellier</td><td>1</td></tr>
+
+<tr><td>Eliott</td><td>Vidéo</td><td>Objectif</td><td>Fisheye</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Yumé</td><td>Vidéo</td><td>Projecteur</td><td>HD</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Vidéo</td><td>Écran</td><td>2m projection</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Son</td><td>Écran</td><td>Pc 60hz Blue g</td><td>Montpellier</td><td>1</td></tr>
+
+<tr><td>Yumé</td><td>Son</td><td>Ampli</td><td>mono yamaha</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Yumé</td><td>Son</td><td>Système son</td><td>Lumikey</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Toni</td><td>Son</td><td>Carte son</td><td>Scarlett</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Yumé</td><td>PC</td><td>Station</td><td>Tour de montage</td><td>Marseille</td><td>1</td></tr>
+
+<tr><td>Nina</td><td>Peinture</td><td>Agrafeuse</td><td>Mural</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Nina</td><td>Peinture</td><td>Pince</td><td>Tendre toiles</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Nina</td><td>Photo</td><td>Appareil</td><td>Argentique</td><td>Marseille</td><td>1</td></tr>
+
+<tr><td>Lilas</td><td>Photo</td><td>Trépied</td><td>1.40m</td><td>Montpellier</td><td>1</td></tr>
+<tr><td>Nina</td><td>Photo</td><td>Trépied</td><td>1.40m</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Eliott</td><td>Photo</td><td>Caméra N</td><td>Canon AE-1</td><td>Marseille</td><td>1</td></tr>
+<tr><td>Lilas</td><td>Photo</td><td>Caméra N</td><td>Ilford</td><td>Montpellier</td><td>1</td></tr>
+<tr><td>Lilas</td><td>Photo</td><td>Caméra N</td><td>Lumix</td><td>Montpellier</td><td>1</td></tr>
+<tr><td>Lilas</td><td>Photo</td><td>Caméra N</td><td>Fujifilm</td><td>Montpellier</td><td>1</td></tr>
+</tbody>
+
+</table>
+
+<script>
+function filtrer() {
+    const p = filtreProprietaire.value;
+    const c = filtreCategorie.value;
+    const d = filtreCaracteristique.value;
+    const l = filtreLieux.value;
+
+    document.querySelectorAll("#inventaire tbody tr").forEach(tr => {
+        const ok =
+            (!p || tr.children[0].innerText === p) &&
+            (!c || tr.children[1].innerText === c) &&
+            (!d || tr.children[3].innerText === d) &&
+            (!l || tr.children[4].innerText === l);
+
+        tr.style.display = ok ? "" : "none";
+    });
+}
+
+function retourMenu() {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Planning 2026</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f7e77c;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* BOUTON RETOUR MENU */
+.retour-menu {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #2c2c2c;
+    color: #f7e77c;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* CORBEILLE */
+#corbeille {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #2c2c2c;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#corbeille.drag-over {
+    background: #c0392b;
+}
+
+/* LAYOUT */
+.wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+/* ACTIVITÉS */
+.activites {
+    width: 180px;
+    background: #2c2c2c;
+    padding: 15px;
+    border-radius: 12px;
+    color: #fff;
+}
+
+.activites h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.activite {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: grab;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* CALENDRIER */
+.annee {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.mois {
+    background: #fff8c6;
+    border: 2px solid #bfae3a;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.mois h2 {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.calendrier {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    font-size: 12px;
+}
+
+.entete {
+    text-align: center;
+    font-weight: bold;
+    background: #f1d84b;
+    border-radius: 4px;
+    padding: 4px 0;
+}
+
+.jour {
+    background: #fffde0;
+    border: 1px solid #bfae3a;
+    border-radius: 6px;
+    min-height: 55px;
+    position: relative;
+}
+
+.jour.drag-over {
+    outline: 2px dashed #000;
+}
+
+.numero {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.vide {
+    background: transparent;
+    border: none;
+}
+
+/* TOOLTIP */
+.jour::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-size: 10px;
+    padding: 3px 4px;
+    border-radius: 4px;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.jour:hover::after {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<button class="retour-menu" onclick="retourMenu()">← Menu</button>
+<div id="corbeille">🗑 Corbeille</div>
+
+<h1>PLANNING – ANNÉE 2026</h1>
+
+<div class="wrapper">
+
+    <!-- ACTIVITÉS -->
+    <div class="activites">
+        <h3>ACTIVITÉS</h3>
+
+        <div class="activite" draggable="true" data-nom="Sérigraphie" data-couleur="#ff6f61" style="background:#ff6f61">Sérigraphie</div>
+        <div class="activite" draggable="true" data-nom="Photo" data-couleur="#6fa8dc" style="background:#6fa8dc">Photo</div>
+        <div class="activite" draggable="true" data-nom="Projection" data-couleur="#93c47d" style="background:#93c47d">Projection</div>
+        <div class="activite" draggable="true" data-nom="Musique" data-couleur="#f6b26b" style="background:#f6b26b">Musique</div>
+    </div>
+
+    <!-- CALENDRIER -->
+    <div class="annee" id="annee"></div>
+
+</div>
+
+<script>
+const moisNoms = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const joursNoms = ["L","M","M","J","V","S","D"];
+const annee = 2026;
+
+const container = document.getElementById("annee");
+const corbeille = document.getElementById("corbeille");
+
+let reservations = JSON.parse(localStorage.getItem("reservations")) || {};
+let activiteEnCours = null;
+
+/* RETOUR MENU */
+function retourMenu() {
+    window.location.href = "index.html";
+}
+
+/* DRAG ACTIVITÉS */
+document.querySelectorAll(".activite").forEach(act => {
+    act.addEventListener("dragstart", () => {
+        activiteEnCours = {
+            nom: act.dataset.nom,
+            couleur: act.dataset.couleur
+        };
+    });
+});
+
+/* CALENDRIER */
+for (let m = 0; m < 12; m++) {
+    const moisDiv = document.createElement("div");
+    moisDiv.className = "mois";
+    moisDiv.innerHTML = `<h2>${moisNoms[m]}</h2>`;
+
+    const grid = document.createElement("div");
+    grid.className = "calendrier";
+
+    joursNoms.forEach(j => {
+        const e = document.createElement("div");
+        e.className = "entete";
+        e.textContent = j;
+        grid.appendChild(e);
+    });
+
+    const offset = (new Date(annee, m, 1).getDay() + 6) % 7;
+    const nbJours = new Date(annee, m + 1, 0).getDate();
+
+    for (let i = 0; i < offset; i++) {
+        grid.appendChild(document.createElement("div")).className = "jour vide";
+    }
+
+    for (let j = 1; j <= nbJours; j++) {
+        const jour = document.createElement("div");
+        jour.className = "jour";
+        jour.draggable = true;
+        jour.dataset.date = `${annee}-${m}-${j}`;
+        jour.innerHTML = `<div class="numero">${j}</div>`;
+
+        jour.addEventListener("dragstart", () => {
+            const data = reservations[jour.dataset.date];
+            if (!data) return;
+            activiteEnCours = { ...data, sourceDate: jour.dataset.date };
+        });
+
+        jour.addEventListener("dragover", e => {
+            e.preventDefault();
+            jour.classList.add("drag-over");
+        });
+
+        jour.addEventListener("dragleave", () => {
+            jour.classList.remove("drag-over");
+        });
+
+        jour.addEventListener("drop", () => {
+            if (!activiteEnCours) return;
+
+            if (activiteEnCours.sourceDate) {
+                delete reservations[activiteEnCours.sourceDate];
+            }
+
+            reservations[jour.dataset.date] = {
+                nom: activiteEnCours.nom,
+                couleur: activiteEnCours.couleur
+            };
+
+            activiteEnCours = null;
+            localStorage.setItem("reservations", JSON.stringify(reservations));
+            afficher();
+            jour.classList.remove("drag-over");
+        });
+
+        grid.appendChild(jour);
+    }
+
+    moisDiv.appendChild(grid);
+    container.appendChild(moisDiv);
+}
+
+/* CORBEILLE */
+corbeille.addEventListener("dragover", e => {
+    e.preventDefault();
+    corbeille.classList.add("drag-over");
+});
+
+corbeille.addEventListener("dragleave", () => {
+    corbeille.classList.remove("drag-over");
+});
+
+corbeille.addEventListener("drop", () => {
+    if (activiteEnCours?.sourceDate) {
+        delete reservations[activiteEnCours.sourceDate];
+        localStorage.setItem("reservations", JSON.stringify(reservations));
+        afficher();
+    }
+    activiteEnCours = null;
+    corbeille.classList.remove("drag-over");
+});
+
+/* AFFICHAGE */
+function afficher() {
+    document.querySelectorAll(".jour").forEach(jour => {
+        const data = reservations[jour.dataset.date];
+        if (data) {
+            jour.style.background = data.couleur;
+            jour.setAttribute("data-tooltip", data.nom);
+            jour.style.cursor = "grab";
+        } else {
+            jour.style.background = "#fffde0";
+            jour.removeAttribute("data-tooltip");
+            jour.style.cursor = "default";
+        }
+    });
+}
+
+afficher();
+</script>
+
+</body>
+</html>
