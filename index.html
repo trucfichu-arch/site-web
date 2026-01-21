@@ -12,23 +12,39 @@
             padding: 0;
         }
 
+        /* ======================
+           BANNIÈRE GLOBALE
+        ====================== */
         .banniere {
-            width: 900px;
-            height: 120px;
-            margin: 20px auto 10px auto;
+            width: 100%;
+            background-color: #fff3a0;
+            border-bottom: 3px solid black;
+        }
+
+        .banniere-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        /* ZONE DESIGN / LOGO */
+        .banniere-design {
+            height: 100px;
             border: 2px dashed black;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             color: #555;
-            background-color: #fff3a0;
+            background-color: #ffffff;
+            margin-bottom: 15px;
         }
 
+        /* ======================
+           MENU INTÉGRÉ
+        ====================== */
         .menu {
-            width: 900px;
-            margin: 20px auto;
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             gap: 6px;
@@ -40,15 +56,15 @@
 
         .menu-item {
             background-color: #cccccc;
-            height: 80px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             color: black;
             border: 2px solid black;
-            transition: all 0.3s ease;
             letter-spacing: 1px;
+            transition: all 0.25s ease;
         }
 
         .menu-item:hover {
@@ -57,9 +73,12 @@
             transform: scale(1.08);
         }
 
+        /* ======================
+           CONTENU
+        ====================== */
         h1 {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
             letter-spacing: 4px;
         }
     </style>
@@ -67,28 +86,37 @@
 
 <body>
 
-<!-- EMPLACEMENT BANNIÈRE -->
-<div class="banniere">
-    BANNIÈRE À VENIR
-</div>
+<!-- BANNIÈRE + MENU -->
+<header class="banniere">
+    <div class="banniere-inner">
 
-<!-- MENU -->
-<nav class="menu">
-    <a href="Bio.html"><div class="menu-item">BIO</div></a>
-    <a href="Inventaire.html"><div class="menu-item">INVENTAIRE</div></a>
-    <!-- POINT CLÉ : planning.html devient index.html ou planning.html réel -->
-    <a href="planning.html"><div class="menu-item">PLANNING</div></a>
-    <a href="Qix-Studio.html"><div class="menu-item">STUDIO</div></a>
-    <a href="Qix-Events.html"><div class="menu-item">EVENTS</div></a>
-    <a href="Qix-Photos.html"><div class="menu-item">PHOTOS</div></a>
-    <a href="Qix-Contact.html"><div class="menu-item">CONTACT</div></a>
-    <a href="Archives.html"><div class="menu-item">ARCHIVES</div></a>
-</nav>
+        <!-- EMPLACEMENT DESIGN -->
+        <div class="banniere-design">
+            ESPACE DESIGN / LOGO À VENIR
+        </div>
 
+        <!-- MENU -->
+        <nav class="menu">
+            <a href="Bio.html"><div class="menu-item">BIO</div></a>
+            <a href="Inventaire.html"><div class="menu-item">INVENTAIRE</div></a>
+            <a href="planning.html"><div class="menu-item">PLANNING</div></a>
+            <a href="Qix-Studio.html"><div class="menu-item">STUDIO</div></a>
+            <a href="Qix-Events.html"><div class="menu-item">EVENTS</div></a>
+            <a href="Qix-Photos.html"><div class="menu-item">PHOTOS</div></a>
+            <a href="Qix-Contact.html"><div class="menu-item">CONTACT</div></a>
+            <a href="Archives.html"><div class="menu-item">ARCHIVES</div></a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- CONTENU PAGE -->
 <h1>ACTU</h1>
 
 </body>
 </html>
+
+
 
 
 
