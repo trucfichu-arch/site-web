@@ -6,7 +6,7 @@
 
     <style>
         /* ======================
-           BASE
+           RESET / BASE
         ====================== */
         * {
             box-sizing: border-box;
@@ -19,10 +19,9 @@
         }
 
         /* ======================
-           HEADER / BANNIÈRE
+           BANNIÈRE
         ====================== */
         header {
-            position: relative;
             width: 100%;
             height: 180px;
             background-image: url("image/bienvenue.png");
@@ -32,23 +31,23 @@
         }
 
         /* ======================
-           MENU SUR BANNIÈRE
+           BARRE DE MENU
         ====================== */
         nav {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-
-            display: flex;
-            gap: 10px;
-            max-width: 1000px;
-            width: 95%;
+            width: 100%;
+            background-color: #fff3a0;
+            border-bottom: 3px solid black;
+            padding: 12px 10px;
         }
 
-        nav a {
-            text-decoration: none;
+        .menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .menu a {
             flex: 1;
+            text-decoration: none;
         }
 
         .menu-item {
@@ -56,20 +55,24 @@
             border: 2px solid black;
             background-size: cover;
             background-position: center;
-            transition: all 0.25s ease;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            background-color: rgba(255,255,255,0.75);
-            backdrop-filter: blur(2px);
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: black;
+
+            transition: all 0.25s ease;
+            background-color: #dcdcdc;
         }
 
         .menu-item:hover {
-            transform: translateY(-4px);
-            filter: brightness(0.9);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            background-color: black;
+            color: #ffe600;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0,0,0,0.35);
         }
 
         /* ======================
@@ -81,21 +84,6 @@
 
         .btn-inventaire {
             background-image: url("image/inventaire.png");
-        }
-
-        /* ======================
-           BOUTONS TEXTE
-        ====================== */
-        .btn-texte {
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: black;
-            background-color: rgba(230,230,230,0.85);
-        }
-
-        .btn-texte:hover {
-            background-color: black;
-            color: #ffe600;
         }
 
         /* ======================
@@ -111,19 +99,23 @@
 
 <body>
 
-<header>
-    <nav>
+<!-- BANNIÈRE -->
+<header></header>
+
+<!-- MENU -->
+<nav>
+    <div class="menu">
         <a href="Bio.html"><div class="menu-item btn-bio"></div></a>
         <a href="Inventaire.html"><div class="menu-item btn-inventaire"></div></a>
 
-        <a href="planning.html"><div class="menu-item btn-texte">PLANNING</div></a>
-        <a href="Qix-Studio.html"><div class="menu-item btn-texte">STUDIO</div></a>
-        <a href="Qix-Events.html"><div class="menu-item btn-texte">EVENTS</div></a>
-        <a href="Qix-Photos.html"><div class="menu-item btn-texte">PHOTOS</div></a>
-        <a href="Qix-Contact.html"><div class="menu-item btn-texte">CONTACT</div></a>
-        <a href="Archives.html"><div class="menu-item btn-texte">ARCHIVES</div></a>
-    </nav>
-</header>
+        <a href="planning.html"><div class="menu-item">PLANNING</div></a>
+        <a href="Qix-Studio.html"><div class="menu-item">STUDIO</div></a>
+        <a href="Qix-Events.html"><div class="menu-item">EVENTS</div></a>
+        <a href="Qix-Photos.html"><div class="menu-item">PHOTOS</div></a>
+        <a href="Qix-Contact.html"><div class="menu-item">CONTACT</div></a>
+        <a href="Archives.html"><div class="menu-item">ARCHIVES</div></a>
+    </div>
+</nav>
 
 <h1>ACTU</h1>
 
